@@ -1,6 +1,7 @@
 {{#each posts as |post|}}
-<!-- Post -->
 {{> post-info post}}
 {{/each}}
 
+{{#if loggedIn}}
 <script src="/javascript/add-post.js"></script>
+{{/if}}

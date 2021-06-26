@@ -7,8 +7,17 @@
         <p class="post-text">
             {{post_text}}
         </p>
+        {{#if loggedIn }}
         <a class="button" href="#">Upvote ({{vote_count}})</a>
         <button class="button-primary">Comment</button>
+        {{else}}
+        <p>Votes: ({{vote_count}})</p>
+        <ul>
+        {{#each comments as |comment|}}
+            {{> comment-info comment}}
+        {{/each}}
+        </ul>
+        {{/if}}
     </div>
     </div>
 </div>
