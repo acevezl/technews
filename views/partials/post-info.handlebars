@@ -1,0 +1,14 @@
+{{!-- Post body --}}
+<div class="post">
+    <div class="row">
+    <div class="twelve columns post-body">
+        <h5 class="post-title">{{title}}</h5>
+        <h6>By {{user.username}} on {{format_date createdAt}}, read full article here: <span class="post-url"><a href="{{post_url}}">{{format_url post_url}}</a></span></h6>
+        <p class="post-text">
+            {{post_text}}
+        </p>
+        <a class="button" href="#">Upvote ({{vote_count}})</a>
+        <button class="button-primary">Comment</button>
+    </div>
+    </div>
+</div>

@@ -4,10 +4,12 @@ body {
 }
 /* nav bar container */
 .navbar {
-    background-color:#fff;
     margin: 0 auto;
     border-bottom: 1px solid #eee;
-    position: sticky;
+    position: sticky!important;
+    top:0;
+    background-color:#fff;
+    z-index: 9999;
 }
 
 .navbar .menu {
@@ -16,6 +18,7 @@ body {
     justify-content: flex-end;
     min-height: 60px;
     align-items: center;
+    background-color:#fff;
 }
 
 /* unordered list styles for navbar*/
