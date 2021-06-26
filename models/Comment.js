@@ -26,10 +26,6 @@ Comment.init(
                 key: 'id'
             }
         },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         comment: {
             type: DataTypes.STRING,
             allowNull: false
