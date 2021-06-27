@@ -3,10 +3,8 @@
 <!-- Post -->
 <div class="post">
     {{> post-info post}}
-        <a class="button" href="#">Like</a>
-        <button class="button-primary">Comment</button>
-        {{#if (equals user.username post.username)}}
-            <a class="button" href="/post/{{id}}" id="edit-{{id}}">edit</a>
-        {{/if}}
+    <a class="button" href="/post/{{id}}" id="view-{{id}}">view</a>
 </div>
 {{/each}}
+
+<script src="/assets/js/upvote.js"></script>

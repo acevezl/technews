@@ -1,0 +1,35 @@
+<div class="post">
+    <div class="row">
+        <div class="twelve columns post-body">
+            <div class="post-title row">
+                <h5 class="ten columns">{{post.title}}</h5>
+                <h5 class="one columns post-likes"><span class="oi oi-thumb-up"> </span>  {{post.vote_count}}</h5>
+                <h5 class="one columns post-comments"><span class="oi oi-comment-square"> </span>  {{post.comment_count}} </h5>
+            </div>
+            <h6>By <strong class="pointer">{{post.username}}</strong> on {{format_date post.createdAt}}, read full article here: <span class="post-url"><a href="{{post.post_url}}">{{format_url post.post_url}}</a></span></h6>
+            <p class="post-text">
+                {{post.post_text}}
+            </p>
+            <ul class="">
+            {{#each post.comments as |comment|}}
+                {{> comment-info comment}}
+            {{/each}}
+            </ul>
+            {{#if loggedIn}}
+            <a class="button" href="/upvote/{{id}}" id="upvote-{{id}}">like</a>
+            <button class="button-primary" id="comment-btn">comment</button>
+            {{/if}}
+        </div>
+        {{#if loggedIn}}
+        <div class="twelve columns new-comment hide" id="new-comment-form-holder">
+            <form class="comment-form">
+                <textarea id="comment-body" name="comment-body" class="comment-text" placeholder="Enter your comment here"></textarea>
+                <button class="button-primary" id="save-btn">save comment</button>
+                <button class="button" id="cancel-btn">cancel</button>
+            </form> 
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+<script src="/assets/js/comment.js"></script>

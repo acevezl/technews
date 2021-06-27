@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
       'title',
       'post_text',
       'createdAt',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
     ],
     include: [
       {
@@ -54,7 +55,8 @@ router.get('/post/:id', (req, res) => {
       'title',
       'post_text',
       'createdAt',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
     ],
     include: [
       {
@@ -110,4 +112,5 @@ router.get('/signup', (req, res) => {
 
   res.render('signup');
 });
+
 module.exports = router;

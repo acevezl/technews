@@ -11,7 +11,7 @@ router.post('/', withAuth, (req, res) => {
         post_text: req.body.post_text,
         user_id: req.session.user_id
       })
-    .then(dbUserData => res.json(dbUserData))
+    .then(dbData => res.json(dbData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -31,10 +31,20 @@ router.put('/:id', withAuth, (req, res) => {
           id: req.params.id
         }
       })
-    .then(dbUserData => res.json(dbUserData))
+    .then(dbData => res.json(dbData))
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
+    });
+});
+
+router.put('/upvote', withAuth, (req, res) => {
+  // custom static method created in models/Post.js
+  Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
+    .then(updatedVoteData => res.json(updatedVoteData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 

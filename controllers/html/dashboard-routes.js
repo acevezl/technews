@@ -17,7 +17,8 @@ router.get('/', withAuth, (req, res) => {
       'title',
       'post_text',
       'createdAt',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
     ],
     include: [
       {
@@ -52,7 +53,8 @@ router.get('/edit/:id', withAuth, (req, res) => {
       'title',
       'post_text',
       'createdAt',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
     ],
     include: [
       {
