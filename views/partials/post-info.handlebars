@@ -2,22 +2,23 @@
 <div class="post">
     <div class="row">
     <div class="twelve columns post-body">
-        <h5 class="post-title">{{title}}</h5>
-        <h6>By {{user.username}} on {{format_date createdAt}}, read full article here: <span class="post-url"><a href="{{post_url}}">{{format_url post_url}}</a></span></h6>
+        <div class="post-title row">
+            <h5 class="ten columns">{{title}}</h5>
+            <h5 class="two columns post-likes">( {{vote_count}} ) <span class="oi oi-thumb-up"> </span> </h5>
+        </div>
+        <h6>By <strong class="pointer">{{user.username}}</strong> on {{format_date createdAt}}, read full article here: <span class="post-url"><a href="{{post_url}}">{{format_url post_url}}</a></span></h6>
         <p class="post-text">
             {{post_text}}
         </p>
         {{#if loggedIn }}
-        <a class="button" href="#">Upvote ({{vote_count}})</a>
+        <a class="button" href="#">Like ({{vote_count}})</a>
         <button class="button-primary">Comment</button>
-        {{else}}
-        <p>Votes: ({{vote_count}})</p>
+        {{/if}}
         <ul>
         {{#each comments as |comment|}}
             {{> comment-info comment}}
         {{/each}}
         </ul>
-        {{/if}}
     </div>
     </div>
 </div>

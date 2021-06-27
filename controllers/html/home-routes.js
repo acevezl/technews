@@ -31,11 +31,8 @@ router.get('/', (req, res) => {
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
-      console.log(dbPostData);
-      res.render('homepage', {
-        posts,
-        loggedIn: req.session.loggedIn
-      });
+      console.log(posts);
+      res.render('homepage', { posts, loggedIn: req.session.loggedIn, userName: req.session.username });
     })
     .catch(err => {
       console.log(err);
@@ -53,7 +50,8 @@ router.get('/post/:id', (req, res) => {
       'id',
       'post_url',
       'title',
-      'created_at',
+      'post_text',
+      'ccreatedAt',
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
@@ -81,7 +79,8 @@ router.get('/post/:id', (req, res) => {
 
       res.render('single-post', {
         post,
-        loggedIn: req.session.loggedIn
+        loggedIn: req.session.loggedIn,
+        userId: req.session.user_id
       });
     })
     .catch(err => {

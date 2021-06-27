@@ -19,6 +19,10 @@ module.exports = {
       }
   
       return word;
+    },
+    equals: (a, b) => {
+      console.log(a + ' ' + b);
+      return (a === b) ? true : false;
     }
   };
   

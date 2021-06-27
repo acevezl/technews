@@ -32,6 +32,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// this code is needed so I can access session variables in handlebars
+app.use(function(req, res, next){
+  res.locals.session = req.session;
+  next();
+});
+
 app.use(require('./controllers/'));
 
 sequelize.sync({ force: false }).then(() => {

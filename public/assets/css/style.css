@@ -65,6 +65,23 @@ body {
     border: 1px solid #eee;
 }
 
+.post .post-title {
+    display: flex;
+    justify-content: space-between;
+}
+.post .post-likes {
+    text-align: right;
+}
+
+.post h5{
+    margin: 0;
+}
+
+/* comment styles */
+ul li.comment{
+    list-style: none;
+}
+
 /* login styles */
 .login {
     margin: 20px 0;
@@ -76,4 +93,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     height: 425px;
+}
+
+.pointer {
+    cursor: default;
+}
+
+.controls-bar {
+    margin: 20px 0;
 }
