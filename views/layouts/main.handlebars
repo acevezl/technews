@@ -26,13 +26,13 @@
   <section class="navbar">
     <div class="container">
       <div class="row">
-        <div class="two columns logo">
+        <div class="four columns logo">
           <a href="/"><img src="/assets/images/logo.jpg"></a>
         </div>
-        <div class="seven columns menu">
+        <div class="five columns menu">
           <ul>
             <li><a href="/">HOME</a></li>
-            {{#if loggedIn}}<li><a href="/dashboard">DASHBOARD</a></li>{{/if}}
+            <li><a href="/dashboard">DASHBOARD</a></li>
             {{#unless loggedIn}}<li><a href="/signup">SIGNUP</a></li>{{/unless}}
           </ul>
         </div>

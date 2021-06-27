@@ -1,9 +1,8 @@
 async function upvoteClickHandler(event) {
   event.preventDefault();
 
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
+  const id = event.target.getAttribute('post-id');
+
   const response = await fetch('/api/posts/upvote', {
     method: 'PUT',
     body: JSON.stringify({
@@ -17,8 +16,10 @@ async function upvoteClickHandler(event) {
   if (response.ok) {
     document.location.reload();
   } else {
-    alert(response.statusText);
+    console.log(response);
   }
 }
 
-document.querySelector('.upvote-btn').addEventListener('click', upvoteClickHandler);
+Array.from(document.querySelectorAll('.upvote-btn')).forEach(function(element) {
+  element.addEventListener('click', upvoteClickHandler);
+});

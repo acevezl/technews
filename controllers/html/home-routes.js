@@ -6,6 +6,7 @@ const { Post, User, Comment, Vote } = require('../../models');
 // get all posts for homepage
 router.get('/', (req, res) => {
   console.log('======================');
+  let user_id = req.session.user_id ? req.session.user_id : null;
   Post.findAll({
     attributes: [
       'id',
@@ -14,7 +15,8 @@ router.get('/', (req, res) => {
       'post_text',
       'createdAt',
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
-      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count'],
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE (vote.user_id = ' + user_id + ' AND vote.post_id = post.id))'), 'liked']
     ],
     include: [
       {
@@ -33,8 +35,6 @@ router.get('/', (req, res) => {
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
-      console.log(posts);
-      console.log(req.session);
       res.render('homepage', { posts, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
@@ -45,6 +45,7 @@ router.get('/', (req, res) => {
 
 // get single post
 router.get('/post/:id', (req, res) => {
+  let user_id = req.session.user_id ? req.session.user_id : null;
   Post.findOne({
     where: {
       id: req.params.id
@@ -55,8 +56,10 @@ router.get('/post/:id', (req, res) => {
       'title',
       'post_text',
       'createdAt',
+      'user_id',
       [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
-      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count'],
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE (vote.user_id = ' + user_id + ' AND vote.post_id = post.id))'), 'liked']
     ],
     include: [
       {
@@ -80,7 +83,7 @@ router.get('/post/:id', (req, res) => {
       }
 
       const post = dbPostData.get({ plain: true });
-
+      console.log(post);
       res.render('single-post', {
         post,
         loggedIn: req.session.loggedIn,

@@ -4,11 +4,11 @@ const Vote = require("./Vote");
 const Comment = require("./Comment");
 
 User.hasMany(Post, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
 });
 
 Post.belongsTo(User, {
-    foreignKey: 'user_id',
+    foreignKey: 'user_id'
 });
 
 User.belongsToMany(Post, {
@@ -32,11 +32,12 @@ Vote.belongsTo(Post, {
 })
 
 User.hasMany(Vote, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
 })
 
 Post.hasMany(Vote, {
-    foreignKey: 'post_id'
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE'
 })
 
 Comment.belongsTo(User, {
@@ -44,7 +45,8 @@ Comment.belongsTo(User, {
 });
 
 Comment.belongsTo(Post, {
-    foreignKey: 'post_id'
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE'
 });
 
 User.hasMany(Comment, {

@@ -1,12 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const bcrypt = require('bcrypt');
 
 class Post extends Model {
   static upvote(body, models) {
+    console.log(body);
     return models.Vote.create({
       user_id: body.user_id,
-      post_id: body.post_id,
+      post_id: body.post_id
     }).then(() => {
       return Post.findOne({
         where: {
@@ -18,12 +18,9 @@ class Post extends Model {
           "title",
           "post_text",
           "createdAt",
-          [
-            sequelize.literal(
-              "(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)"
-            ),
-            "vote_count",
-          ],
+          [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count'],
+          [sequelize.literal('(SELECT COUNT(*) FROM comment WHERE post.id = comment.post_id)'), 'comment_count'],
+          [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id AND post.user_id = vote.user_id)'), 'liked']
         ],
         include: [
           {
@@ -42,6 +39,10 @@ class Post extends Model {
           },
         ],
       });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
   }
 }

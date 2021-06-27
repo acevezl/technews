@@ -4,12 +4,15 @@
 {{/if}}
 {{#each posts as |post|}}
 <!-- Post -->
-<div class="post">
+<div class="post" id="post-{{id}}">
     {{> post-info post}}
-    <a class="button" href="/dashboard/edit/{{id}}" id="edit-{{id}}">edit</a>
+    <a class="button button-primary" href="/dashboard/edit/{{id}}" id="edit-{{id}}">edit</a>
+    <button class="button delete-post-btn" id="confirm-delete-{{id}}" post-id="{{id}}">delete</button>
 </div>
 {{/each}}
 
 {{#if loggedIn}}
 <script src="/assets/js/add-post.js"></script>
+<script src="/assets/js/upvote.js"></script>
+<script src="/assets/js/delete-post.js"></script>
 {{/if}}

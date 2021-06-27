@@ -4,17 +4,19 @@
         <div class="twelve columns post-body">
             <div class="post-title row">
                 <h5 class="ten columns">{{title}}</h5>
-                <h5 class="one columns post-likes"><span class="oi oi-thumb-up"> </span>  {{vote_count}}</h5>
-                <h5 class="one columns post-comments"><span class="oi oi-comment-square"> </span>  {{comment_count}} </h5>
+                <h5 class="two columns post-likes upvote-btn"><span class="oi oi-thumb-up {{#if liked}}active{{/if}}" post-id="{{id}}"> </span>  {{vote_count}}</h5>
             </div>
             <h6>By <strong class="pointer">{{user.username}}</strong> on {{format_date createdAt}}, read full article here: <span class="post-url"><a href="{{post_url}}">{{format_url post_url}}</a></span></h6>
             <p class="post-text">
                 {{post_text}}
             </p>
-            <ul class="hide">
-            {{#each comments as |comment|}}
-                {{> comment-info comment}}
-            {{/each}}
-            </ul>
+            <div class="row">
+                <h5 class="one column post-comments"><span class="oi oi-comment-square"> </span>  {{comment_count}} </h5>
+                <ul class="eleven columns">
+                {{#each comments as |comment|}}
+                    {{> comment-info comment}}
+                {{/each}}
+                </ul>
+            </div>
         </div>
     </div>

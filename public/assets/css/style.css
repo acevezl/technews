@@ -63,14 +63,20 @@ body {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #eee;
+    position: relative;
 }
 
 .post .post-title {
     display: flex;
     justify-content: space-between;
 }
-.post .post-likes, .post .post-comments {
+
+.post .post-likes {
     text-align: right;
+}
+
+.post .post .post-comments {
+    text-align: left;
 }
 
 .post h5{
@@ -86,8 +92,16 @@ body {
     width: 100%;
 }
 
+.active {
+    color:#1EAEDB;
+}
+
 .hide {
     display: none;
+}
+
+.upvote-btn {
+    cursor: pointer;
 }
 
 /* comment styles */
@@ -140,4 +154,34 @@ ul li.comment{
 
 .ok {
     color:green;
+}
+
+/* modal styles */
+
+.modal {
+    display: relative; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border-radius: 4px;
+    text-align: center;
+}
+
+.modal-content {
+    position: absolute;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #bbb;
+    width: 70%; /* Could be more or less, depending on screen size */
+    min-width: 280px;
+    border-radius: 4px;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
 }
