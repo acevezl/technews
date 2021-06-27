@@ -1,0 +1,30 @@
+{{!-- Post Form body --}}
+<div class="post" id="new-post">
+    <div class="row">
+        <div class="twelve columns post-body">
+            <form class="edit-post-form">
+            
+            <label for="post-title">Title* <span></span></label>
+            <h5 class="twelve columns">
+                <input id="post-title" name="post-title" type="text" value="{{post.title}}" placeholder="Post Title">
+            </h5>
+
+            <label for="post-url">Post address* <span></span></label>
+            <input id="post-url" name="post-url" type="text" value="{{post.post_url}}" placeholder="Post URL">
+            
+            <label for="post-text">Post* <span></span></label>
+            <textarea id="post-text" name="post-text" class="post-text" placeholder="Enter post text here">{{post.post_text}}</textarea>
+            
+            <div class="validation-messages error"></div>
+            <div class="row">
+                <button class="button-primary">Save</button>
+                <a class="button" href="/dashboard" id="cancel-btn">Cancel</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{#if loggedIn}}
+<script src="/assets/js/edit-post.js"></script>
+{{/if}}

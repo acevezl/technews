@@ -1,5 +1,12 @@
-
+<h5>Tech Blog Home</h5>
 {{#each posts as |post|}}
 <!-- Post -->
-{{> post-info post}}
+<div class="post">
+    {{> post-info post}}
+        <a class="button" href="#">Like</a>
+        <button class="button-primary">Comment</button>
+        {{#if (equals user.username post.username)}}
+            <a class="button" href="/post/{{id}}" id="edit-{{id}}">edit</a>
+        {{/if}}
+</div>
 {{/each}}

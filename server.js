@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 
 const app = express();
+
 const PORT = process.env.PORT || 3001;
 
 const sequelize = require("./config/connection");
@@ -21,6 +22,12 @@ const sess = {
 
 app.use(session(sess));
 
+// this code is needed so I can access session variables in handlebars
+app.use(function(req, res, next){
+  res.locals.session = req.session;
+  next();
+});
+
 const helpers = require('./utils/helpers');
 
 const hbs = exphbs.create({ helpers });
@@ -31,12 +38,6 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// this code is needed so I can access session variables in handlebars
-app.use(function(req, res, next){
-  res.locals.session = req.session;
-  next();
-});
 
 app.use(require('./controllers/'));
 

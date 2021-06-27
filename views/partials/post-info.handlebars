@@ -1,5 +1,5 @@
 {{!-- Post body --}}
-<div class="post">
+
     <div class="row">
         <div class="twelve columns post-body">
             <div class="post-title row">
@@ -10,10 +10,6 @@
             <p class="post-text">
                 {{post_text}}
             </p>
-            {{#if loggedIn }}
-            <a class="button" href="#">Like ({{vote_count}})</a>
-            <button class="button-primary">Comment</button>
-            {{/if}}
             <ul>
             {{#each comments as |comment|}}
                 {{> comment-info comment}}
@@ -21,4 +17,3 @@
             </ul>
         </div>
     </div>
-</div>

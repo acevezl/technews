@@ -1,9 +1,15 @@
-{{> new-post}}
-
+<h5>Your Dashboard</h5>
+{{#if loggedIn}}
+    {{> new-post}}
+{{/if}}
 {{#each posts as |post|}}
-{{> post-info post}}
+<!-- Post -->
+<div class="post">
+    {{> post-info post}}
+    <a class="button" href="/dashboard/edit/{{id}}" id="edit-{{id}}">edit</a>
+</div>
 {{/each}}
 
 {{#if loggedIn}}
-<script src="./assets/js/add-post.js"></script>
+<script src="/assets/js/add-post.js"></script>
 {{/if}}
