@@ -1,24 +1,24 @@
 {{!-- Post body --}}
 <div class="post">
     <div class="row">
-    <div class="twelve columns post-body">
-        <div class="post-title row">
-            <h5 class="ten columns">{{title}}</h5>
-            <h5 class="two columns post-likes">( {{vote_count}} ) <span class="oi oi-thumb-up"> </span> </h5>
+        <div class="twelve columns post-body">
+            <div class="post-title row">
+                <h5 class="ten columns">{{title}}</h5>
+                <h5 class="two columns post-likes">( {{vote_count}} ) <span class="oi oi-thumb-up"> </span> </h5>
+            </div>
+            <h6>By <strong class="pointer">{{user.username}}</strong> on {{format_date createdAt}}, read full article here: <span class="post-url"><a href="{{post_url}}">{{format_url post_url}}</a></span></h6>
+            <p class="post-text">
+                {{post_text}}
+            </p>
+            {{#if loggedIn }}
+            <a class="button" href="#">Like ({{vote_count}})</a>
+            <button class="button-primary">Comment</button>
+            {{/if}}
+            <ul>
+            {{#each comments as |comment|}}
+                {{> comment-info comment}}
+            {{/each}}
+            </ul>
         </div>
-        <h6>By <strong class="pointer">{{user.username}}</strong> on {{format_date createdAt}}, read full article here: <span class="post-url"><a href="{{post_url}}">{{format_url post_url}}</a></span></h6>
-        <p class="post-text">
-            {{post_text}}
-        </p>
-        {{#if loggedIn }}
-        <a class="button" href="#">Like ({{vote_count}})</a>
-        <button class="button-primary">Comment</button>
-        {{/if}}
-        <ul>
-        {{#each comments as |comment|}}
-            {{> comment-info comment}}
-        {{/each}}
-        </ul>
-    </div>
     </div>
 </div>

@@ -5,7 +5,7 @@ const userdata = [
   {
     username: 'alesmonde0',
     email: 'nwestnedge0@cbc.ca',
-    password: 'password123'
+    password: 'password123',
   },
   {
     username: 'jwilloughway1',

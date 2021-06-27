@@ -1,11 +1,9 @@
-<div class="controls-bar">
-    <button class="button-primary"><span class="oi oi-plus"></span> New post</button>
-</div>
+{{> new-post}}
 
 {{#each posts as |post|}}
 {{> post-info post}}
 {{/each}}
 
 {{#if loggedIn}}
-<script src="/javascript/add-post.js"></script>
+<script src="./assets/js/add-post.js"></script>
 {{/if}}
