@@ -83,7 +83,7 @@ ul li.comment{
 }
 
 /* login styles */
-.login {
+.login, .signup {
     margin: 20px 0;
 }
 
@@ -95,10 +95,36 @@ ul li.comment{
     height: 425px;
 }
 
+/* signup styles */
+.signup .username-box, .signup .names-box {
+    display: flex;
+    justify-content:left;
+}
+
+.signup input {
+    margin-right: 10px;
+}
+
 .pointer {
     cursor: default;
 }
 
 .controls-bar {
     margin: 20px 0;
+}
+
+.validation-messages {
+    margin-bottom: 10px;
+}
+
+.validation-messages p {
+    margin: 0;
+}
+
+.error {
+    color:firebrick;
+}
+
+.ok {
+    color:green;
 }

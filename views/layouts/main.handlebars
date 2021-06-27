@@ -29,16 +29,17 @@
         <div class="two columns logo">
           <a href="/"><img src="./assets/images/logo.jpg"></a>
         </div>
-        <div class="eight columns menu">
+        <div class="seven columns menu">
           <ul>
             <li><a href="/">HOME</a></li>
             {{#if loggedIn}}<li><a href="/dashboard">DASHBOARD</a></li>{{/if}}
-            <li>{{#if loggedIn}}<a href="/" id="logout">LOGOUT</a>{{else}}<a href="/login">LOGIN</a>{{/if}}</li>
             {{#unless loggedIn}}<li><a href="/signup">SIGNUP</a></li>{{/unless}}
           </ul>
         </div>
-        <div class="two columns menu">
-          {{#if loggedIn}}{{session.username}}{{/if}}
+        <div class="three columns menu">
+          <ul>
+          <li>{{#if loggedIn}}{{session.username}} (<a href="/" id="logout">LOGOUT</a>){{else}}<a href="/login">LOGIN</a>{{/if}}</li>
+          </ul>
         </div>
       </div>
     </div>

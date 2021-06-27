@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Post,
-                attributes: ['id','title','post_url','created_at']
+                attributes: ['id','title','post_url','createdAt']
             },
             {
                 model: Post,
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
             },
             {
                 model: Comment,
-                attributes: ['comment','createdAt']
+                attributes: ['comment_text','createdAt']
             }
         ]
       })
@@ -50,6 +50,45 @@ router.get('/:id', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
+});
+
+// GET /api/users/username/:username
+router.get('/username/:username', (req, res) => {
+  User.findOne({
+      attributes: { 
+          exclude: ['password']
+      },
+      where: {
+        username: req.params.username
+      },
+      include: [
+          {
+              model: Post,
+              attributes: ['id','title','post_url','createdAt']
+          },
+          {
+              model: Post,
+              attributes: ['title'],
+              through: Vote,
+              as: 'voted_posts'
+          },
+          {
+              model: Comment,
+              attributes: ['comment_text','createdAt']
+          }
+      ]
+    })
+  .then(dbUserData => {
+      if (!dbUserData) {
+      res.status(404).json({ message: 'No user found with this username' });
+      return;
+      }
+      res.json(dbUserData);
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
 });
 
 // POST /api/users
