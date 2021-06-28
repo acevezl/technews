@@ -59,6 +59,12 @@ Ah yes, and you can comment too...
 
 ![Like and comment](./readme_assets/like-and-comment.gif)
 
+### Session
+The app has a handler for session inactivity. If any logged user spends more than 3 minutes idle (that is: no mouse move, no key press), a message will be displayed to alert user of imminent logout.
+
+If no action is taken after the message, the app will logout in 60 seconds.
+
+![Logout](./readme_assets/logout.gif)
 
 ## Code
 
