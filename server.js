@@ -12,12 +12,13 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
   secret: 'Parangaricutirimicuaro',
-  cookie: {},
+  cookie: { },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
     db: sequelize
-  })
+  }),
+  maxAge: Date.now() + 30000
 };
 
 app.use(session(sess));
