@@ -181,6 +181,24 @@ API routes are used to create, retrieve, update, and delete. While HTML routes a
 
 ![Controller](./readme_assets/controller.png)
 
+## Test Users
+
+Please use the following users for your testing (and entretainment): 
+
+| username | password |
+| -------- | -------- |
+| alesmonde0 | password123 |
+| jwilloughway1 | password123 |
+| iboddam2 | password123 |
+| dstanmer3 | password123 |
+| djiri4 | password123 |
+| msprague5 | password123 |
+| mpergens6 | password123 |
+| tpenniell7 | password123 |
+| msabbins8 | password123 |
+| jmacarthur9 | password123 |
+
+
 ## Questions
 E-mail me: <lou.arnaut@gmail.com>
 Checkout my Github profile: [acevezl](https://github.com/acevezl)
