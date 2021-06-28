@@ -11,12 +11,13 @@
 }
 
 let idleTime = 0; // minute counter
-let lastCounter = 10; // last seconds before logout
+let lastCounter = 60; // last seconds before logout
 var idleInterval;
+var lastInterval;
 document.addEventListener("DOMContentLoaded", function(event) { 
 
     // Increment the idle time counter every minute.
-    idleInterval = setInterval(timerIncrement, 1000); // 1 second
+    idleInterval = setInterval(timerIncrement, 60000); // 1 minute
 
     // Zero the idle timer on user actions (mouse movement key press).
     document.addEventListener('mousemove', function (e) {
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function timerIncrement() {
-    if (idleTime >= 5) { // five seconds
+    if (idleTime > 2) { // three minutes
       clearInterval(idleInterval);
       let logoutModal = document.createElement('div');
       logoutModal.innerHTML =
@@ -49,10 +50,12 @@ function timerIncrement() {
       `;
       document.querySelector(`body`).appendChild(logoutModal);
       document.querySelector(`#keep-logged-in`).addEventListener('click', function(e){
-        idleInterval = setInterval(timerIncrement, 1000); // 1 second
+        idleInterval = setInterval(timerIncrement, 60000); // 1 minute
         document.querySelector('#logoutModal').remove();
+        clearInterval(lastInterval);
+        lastCounter = 60;
       });
-      var lastInterval = setInterval(lastSeconds, 1000);
+      lastInterval = setInterval(lastSeconds, 1000); // 1 second
     }
     idleTime++;
 }
